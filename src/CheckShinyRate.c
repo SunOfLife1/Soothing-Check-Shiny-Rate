@@ -36,17 +36,15 @@ int main(int argc, char **argv)
         return printCloseWindow();
     }
 
-    // Read shiny value into buffer
-    unsigned char *buf = malloc(1);
+    // Read shiny value
     fseek(rom, OFFSET, SEEK_SET);
-    fread(buf, 1, 1, rom);
+    unsigned char shinyValue = fgetc(rom);
 
     // Print the current shiny value
-    printf("Current Shiny Rate: %d/65536\n", buf[0]);
+    printf("Current Shiny Rate: %d/65536\n", shinyValue);
 
-    // Close files, free allocated memory
+    // Close ROM file
     fclose(rom);
-    free(buf);
 
     return printCloseWindow();
 }
